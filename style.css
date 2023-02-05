@@ -1,0 +1,416 @@
+@font-face {
+	src: url(./GalleroVintage-DemoVersion-Regular.otf);
+	font-family: vintage;
+}
+
+:root {
+	--font-1: "Josefin Sans", sans-serif;
+	--font-2: "Noto Serif", serif;
+	--font-3: "Playfair Display", serif;
+	--font-4: "Poppins", sans-serif;
+
+	--col-1: #264653;
+	--col-2: #2a9d8f;
+	--col-3: #e9c46a;
+	--col-4: #f4a261;
+	--col-5: #e76f51;
+}
+
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: var(--font-4);
+}
+
+.game-interface {
+	scroll-behavior: smooth;
+	overflow-y: auto;
+	overflow-x: hidden;
+	perspective: 300px;
+	height: 100vh;
+}
+
+.parallax-group {
+	position: relative;
+	height: 100vh;
+	transform-style: preserve-3d;
+}
+
+.parallax-layer {
+	position: absolute;
+	inset: 0;
+}
+
+#page-1 {
+	width: 100%;
+	height: 100vh;
+	transform: translateZ(-600px) scale(3) translateX(-5.5px);
+	color: var(--col-1);
+	background: linear-gradient(
+		135deg,
+		var(--col-2),
+		var(--col-3),
+		var(--col-4)
+	);
+}
+
+.page-1 {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	height: 100%;
+}
+
+.title {
+	position: relative;
+	top: -5vh;
+	font-family: vintage;
+	font-size: 3rem;
+}
+
+.title span {
+	font-size: 2rem;
+	letter-spacing: 2px;
+	font-family: var(--font-3);
+	text-transform: capitalize;
+}
+
+.player-info {
+	border: 5px solid var(--col-1);
+	display: flex;
+	padding: 0 2rem 2rem;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.player-info h2 {
+	text-transform: capitalize;
+	font-size: 1.6rem;
+	margin-block: 2rem 3rem;
+}
+
+.player-info input {
+	width: 220px;
+	padding: 1rem;
+	color: #264653;
+	font-size: 1.2rem;
+	font-weight: 700;
+	text-transform: capitalize;
+	margin-bottom: 1rem;
+	outline: none;
+	border: 2px solid var(--col-1);
+	border-radius: 10px;
+	text-align: center;
+	background: #eee;
+}
+
+#submit {
+	width: 100px;
+	height: 40px;
+	margin-bottom: 2rem;
+	padding: 0.8rem 1.5rem;
+	background: transparent;
+	border-radius: 5px;
+	border: 2px solid #264653;
+	position: relative;
+}
+
+#submit a {
+	color: #264653;
+	text-decoration: none;
+	font-size: 1rem;
+	font-weight: 700;
+	position: absolute;
+	inset: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.player-info img {
+	width: 400px;
+}
+
+#page-2 {
+	top: 100vh;
+	height: 100vh;
+	background: linear-gradient(
+		90deg,
+		var(--col-2),
+		var(--col-3),
+		var(--col-4)
+	);
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.page-2 {
+	position: relative;
+	display: flex;
+	justify-content: space-around;
+	align-items: start;
+	width: 100%;
+	height: 100%;
+}
+
+#message {
+	position: absolute;
+	top: 3rem;
+	font-size: 3rem;
+	text-transform: capitalize;
+	font-family: vintage;
+}
+
+#start {
+	position: absolute;
+	font-size: 1.5rem;
+	font-weight: 700;
+	font-family: var(--font-4);
+	bottom: 7rem;
+	padding: 0.8rem 2rem;
+	cursor: pointer;
+	background: #111;
+	border: none;
+	color: #eee;
+}
+
+.player {
+	margin-top: 9rem;
+	border: 4px solid #000;
+	width: 45%;
+	height: 60%;
+	position: relative;
+	padding: 2rem 1rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: end;
+}
+
+#player-one,
+#player-ai {
+	font-size: 1.5rem;
+	text-transform: capitalize;
+}
+
+.rps-img {
+	width: 100px;
+	height: 100px;
+	margin-block: 5rem 3rem;
+	position: relative;
+}
+
+#player-result,
+#ai-result {
+	font-size: 1.2rem;
+	font-weight: 700;
+	text-transform: capitalize;
+}
+
+#player-result img {
+	position: absolute;
+	top: -50%;
+	left: -50%;
+}
+
+#ai-result img {
+	transform: rotateY(180deg);
+	position: absolute;
+	top: -50%;
+	left: -50%;
+}
+
+.player img {
+	width: 200px;
+	position: absolute;
+}
+
+.emoji {
+	position: absolute;
+	left: 50%;
+	top: 2rem;
+	transform: translateX(-50%);
+	width: 200px;
+	height: 200px;
+	transition: 0.5s;
+}
+
+.normal {
+	opacity: 1;
+	transition: 0.5s;
+}
+
+.angry {
+	transform: translate3d(0, 0, 0);
+	perspective: 1000px;
+	transition: 0.5s;
+	/* animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both infinite; */
+	animation-delay: 0.5s;
+	animation-duration: 0.82s;
+	animation-iteration-count: infinite;
+	animation-name: shake;
+	animation-timing-function: cubic-bezier(0.36, 0.07, 0.19, 0.97);
+}
+
+.happy {
+	animation-delay: 0.5s;
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
+	animation-name: jump;
+	animation-timing-function: cubic-bezier(0.28, 0.84, 0.42, 1);
+}
+
+@keyframes jump {
+	0% {
+		transform: scale(1, 1) translateY(0);
+	}
+	10% {
+		transform: scale(1.1, 0.9) translateY(0);
+	}
+	30% {
+		transform: scale(0.9, 1.1) translateY(-100px);
+	}
+	50% {
+		transform: scale(1.05, 0.95) translateY(0);
+	}
+	57% {
+		transform: scale(1, 1) translateY(-7px);
+	}
+	64% {
+		transform: scale(1, 1) translateY(0);
+	}
+	100% {
+		transform: scale(1, 1) translateY(0);
+	}
+}
+
+@keyframes shake {
+	10%,
+	90% {
+		transform: translate3d(-1px, 0, 0);
+	}
+
+	20%,
+	80% {
+		transform: translate3d(2px, 0, 0);
+	}
+
+	30%,
+	50%,
+	70% {
+		transform: translate3d(-4px, 0, 0);
+	}
+
+	40%,
+	60% {
+		transform: translate3d(4px, 0, 0);
+	}
+}
+
+@media (max-width: 450px) {
+	.title {
+		top: 3rem;
+	}
+
+	.player-info {
+		border: none;
+	}
+
+	.player-info h2 {
+		text-transform: capitalize;
+		font-size: 1rem;
+		margin-block: 3.5rem 1rem;
+	}
+
+	.player-info img {
+		width: 300px;
+	}
+
+	.emoji {
+		left: 65%;
+	}
+
+	.player img {
+		width: 150px;
+	}
+
+	#player-result img {
+		left: -10%;
+		top: 0;
+	}
+
+	#ai-result img {
+		left: -40%;
+		top: 0;
+	}
+
+	.player {
+		margin-top: 12rem;
+		border: 3px solid #000;
+		width: 45%;
+		height: 400px;
+		position: relative;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: end;
+	}
+
+	#player-one,
+	#player-ai {
+		font-size: 1.2rem;
+		position: absolute;
+		top: 55%;
+	}
+
+	html {
+		scroll-behavior: smooth;
+	}
+
+	.game-interface {
+		overflow-y: unset;
+		overflow-x: hidden;
+		height: 100%;
+	}
+
+	.parallax-group {
+		height: 100%;
+	}
+
+	.parallax-layer {
+		position: unset;
+	}
+
+	#page-1 {
+		height: 100vh;
+		transform: unset;
+		position: relative;
+		z-index: 0;
+	}
+
+	#page-2 {
+		top: unset;
+		height: 100vh;
+		position: relative;
+		z-index: 2;
+	}
+
+	#message {
+		top: 5rem;
+	}
+
+	#start {
+		font-size: 1.2rem;
+		bottom: 3rem;
+		padding: 0.7rem 1.8rem;
+	}
+}
